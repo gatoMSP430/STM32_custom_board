@@ -1,0 +1,33 @@
+{
+  "cores": [
+    {
+      "maintainer": "STMicroelectronics",
+      "architecture": "stm32",
+      "boards": [
+        {
+          "name": "OBC STM32",
+          "options": "usb=CDCgen"
+        }
+      ],
+      "sketches": [
+        {
+          "comment": "By default, ignore all those boards",
+          "pattern": "^.*$",
+          "applicable": false,
+          "boards": [
+            "OBC STM32",
+          ]
+        },
+        {
+          "comment": "Ignore also those boards except for BareMinimum",
+          "pattern": "^((?!BareMinimum).)*$",
+          "applicable": false,
+          "boards": [
+            "DEMO_F030F4",
+            "RHF76_052"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+# See: https://arduino.github.io/arduino-cli/latest/platform-specification/
+
+menu.pnum=Board part number
+
+#menu.xserial=U(S)ART support
+menu.usb=USB support (if available)
+menu.xusb=USB speed (if available)
+menu.virtio=Virtual serial support
+
+menu.opt=Optimize
+menu.dbg=Debug symbols and core logs
+menu.rtlib=C Runtime Library
+menu.upload_method=Upload method
+
+################################################################################
+# ESAT
+ESAT.name=ESAT STM32
+
+ESAT.build.core=arduino
+ESAT.build.board=ESAT
+ESAT.build.product_line=STM32L476xx
+ESAT.build.xserial=-DHAL_UART_MODULE_ENABLED -DENABLE_HWSERIAL3 -DPIN_SERIAL3_RX=PC5 -DPIN_SERIAL3_TX=PC4
+ESAT.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC
+
+ESAT.build.st_extra_flags=-D{build.product_line} {build.enable_usb} {build.xSerial}
+ESAT.build.mcu=cortex-m4
+ESAT.build.fpu=-mfpu=fpv4-sp-d16
+ESAT.build.float-abi=-mfloat-abi=hard
+ESAT.build.series=STM32L4xx
+ESAT.build.flash_offset=0x0
+ESAT.build.board=GENERIC_L476RGTX
+ESAT.build.variant=OBC
+
+ESAT.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32L4xx/STM32L476.svd
+
+ESAT.upload.maximum_size=1048576
+ESAT.upload.maximum_data_size=98304
+ESAT.openocd.target=stm32l4x
+ESAT.build.extra_flags+='-DUSB_MANUFACTURER_STRING="THEIA"' '-DUSB_PRODUCT_STRING="OBCSTM32"'
+
+
+# Generic L476RGTx
+ESAT.menu.pnum.GENERIC_L476RGTX=OBC
+#L476RGTx
+ESAT.menu.pnum.GENERIC_L476RGTX.upload.maximum_size=1048576
+ESAT.menu.pnum.GENERIC_L476RGTX.upload.maximum_data_size=98304
+ESAT.menu.pnum.GENERIC_L476RGTX.build.board=GENERIC_L476RGTX
+ESAT.menu.pnum.GENERIC_L476RGTX.build.product_line=STM32L476xx
+ESAT.menu.pnum.GENERIC_L476RGTX.build.variant=OBC
+ESAT.menu.pnum.GENERIC_L476RGTX.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32L4xx/STM32L476.svd
+
+#ESAT.menu.xserial.generic=Enabled (generic 'Serial')
+#ESAT.menu.xserial.none=Enabled (no generic 'Serial')
+#ESAT.menu.xserial.none.build.xSerial=-DHAL_UART_MODULE_ENABLED -DHWSERIAL_NONE
+#ESAT.menu.xserial.disabled=Disabled (no Serial support)
+#ESAT.menu.xserial.disabled.build.xSerial=
+
+ESAT.menu.usb.none=None
+ESAT.menu.usb.CDCgen=CDC (generic 'Serial' supersede U(S)ART)
+ESAT.menu.usb.CDCgen.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC
+#ESAT.menu.usb.CDC=CDC (no generic 'Serial')
+#ESAT.menu.usb.CDC.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC -DDISABLE_GENERIC_SERIALUSB
+#ESAT.menu.usb.HID=HID (keyboard and mouse)
+#ESAT.menu.usb.HID.build.enable_usb={build.usb_flags} -DUSBD_USE_HID_COMPOSITE
+#ESAT.menu.xusb.FS=Low/Full Speed
+#ESAT.menu.xusb.HS=High Speed
+#ESAT.menu.xusb.HS.build.usb_speed=-DUSE_USB_HS
+#ESAT.menu.xusb.HSFS=High Speed in Full Speed mode
+#ESAT.menu.xusb.HSFS.build.usb_speed=-DUSE_USB_HS -DUSE_USB_HS_IN_FS
+
+ESAT.menu.opt.osstd=Smallest (-Os default)
+ESAT.menu.opt.oslto=Smallest (-Os) with LTO
+ESAT.menu.opt.oslto.build.flags.optimize=-Os -flto
+ESAT.menu.opt.o1std=Fast (-O1)
+ESAT.menu.opt.o1std.build.flags.optimize=-O1
+ESAT.menu.opt.o1lto=Fast (-O1) with LTO
+ESAT.menu.opt.o1lto.build.flags.optimize=-O1 -flto
+ESAT.menu.opt.o2std=Faster (-O2)
+ESAT.menu.opt.o2std.build.flags.optimize=-O2
+ESAT.menu.opt.o2lto=Faster (-O2) with LTO
+ESAT.menu.opt.o2lto.build.flags.optimize=-O2 -flto
+ESAT.menu.opt.o3std=Fastest (-O3)
+ESAT.menu.opt.o3std.build.flags.optimize=-O3
+ESAT.menu.opt.o3lto=Fastest (-O3) with LTO
+ESAT.menu.opt.o3lto.build.flags.optimize=-O3 -flto
+ESAT.menu.opt.ogstd=Debug (-Og)
+ESAT.menu.opt.ogstd.build.flags.optimize=-Og
+ESAT.menu.opt.o0std=No Optimization (-O0)
+ESAT.menu.opt.o0std.build.flags.optimize=-O0
+
+# Upload menu
+ESAT.menu.upload_method.dfuMethod=STM32CubeProgrammer (DFU)
+ESAT.menu.upload_method.dfuMethod.upload.protocol=dfu
+ESAT.menu.upload_method.dfuMethod.upload.options=-v {upload.vid} -p {upload.pid}
+ESAT.menu.upload_method.dfuMethod.upload.tool=stm32CubeProg
+
+ESAT.menu.upload_method.swdMethod=STM32CubeProgrammer (SWD)
+ESAT.menu.upload_method.swdMethod.upload.protocol=swd
+ESAT.menu.upload_method.swdMethod.upload.options=
+ESAT.menu.upload_method.swdMethod.upload.tool=stm32CubeProg
+
+ESAT.menu.upload_method.jlinkMethod=STM32CubeProgrammer (J-Link)
+ESAT.menu.upload_method.jlinkMethod.upload.protocol=jlink
+ESAT.menu.upload_method.jlinkMethod.upload.options=
+ESAT.menu.upload_method.jlinkMethod.upload.tool=stm32CubeProg
+
+ESAT.menu.upload_method.serialMethod=STM32CubeProgrammer (Serial)
+ESAT.menu.upload_method.serialMethod.upload.protocol=serial
+ESAT.menu.upload_method.serialMethod.upload.options=-c {serial.port.file}
+ESAT.menu.upload_method.serialMethod.upload.tool=stm32CubeProg
+
+ESAT.menu.upload_method.OpenOCDSTLink=OpenOCD STLink (SWD)
+ESAT.menu.upload_method.OpenOCDSTLink.upload.protocol=stlink
+ESAT.menu.upload_method.OpenOCDSTLink.upload.tool=openocd_upload
+
+ESAT.menu.upload_method.OpenOCDDapLink=OpenOCD DapLink (SWD)
+ESAT.menu.upload_method.OpenOCDDapLink.upload.protocol=cmsis-dap
+ESAT.menu.upload_method.OpenOCDDapLink.upload.tool=openocd_upload
+
+
+ESAT.menu.dbg.none=None
+ESAT.menu.dbg.enable_sym=Symbols Enabled (-g)
+ESAT.menu.dbg.enable_sym.build.flags.debug=-g -DNDEBUG
+ESAT.menu.dbg.enable_log=Core logs Enabled
+ESAT.menu.dbg.enable_log.build.flags.debug=
+ESAT.menu.dbg.enable_all=Core Logs and Symbols Enabled (-g)
+ESAT.menu.dbg.enable_all.build.flags.debug=-g
+
+ESAT.menu.rtlib.nano=Newlib Nano (default)
+ESAT.menu.rtlib.nanofp=Newlib Nano + Float Printf
+ESAT.menu.rtlib.nanofp.build.flags.ldspecs=--specs=nano.specs -u _printf_float
+ESAT.menu.rtlib.nanofs=Newlib Nano + Float Scanf
+ESAT.menu.rtlib.nanofs.build.flags.ldspecs=--specs=nano.specs -u _scanf_float
+ESAT.menu.rtlib.nanofps=Newlib Nano + Float Printf/Scanf
+ESAT.menu.rtlib.nanofps.build.flags.ldspecs=--specs=nano.specs -u _printf_float -u _scanf_float
+ESAT.menu.rtlib.full=Newlib Standard
+ESAT.menu.rtlib.full.build.flags.ldspecs=
+

@@ -1,0 +1,84 @@
+# GENERIC_L476RGTX
+# -----------------------------------------------------------------------------
+
+set(GENERIC_L476RGTX_VARIANT_PATH "${CMAKE_CURRENT_LIST_DIR}/../variants/STM32L4xx/L475R(C-E-G)T_L476R(C-E-G)T_L486RGT")
+set(GENERIC_L476RGTX_MAXSIZE 1048576)
+set(GENERIC_L476RGTX_MAXDATASIZE 98304)
+set(GENERIC_L476RGTX_MCU cortex-m4)
+set(GENERIC_L476RGTX_FPCONF "-")
+add_library(GENERIC_L476RGTX INTERFACE)
+target_compile_options(GENERIC_L476RGTX INTERFACE
+  "SHELL:-DSTM32L476xx  "
+  "SHELL:"
+  "SHELL:"
+  "SHELL:-mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+  -mcpu=${GENERIC_L476RGTX_MCU}
+)
+target_compile_definitions(GENERIC_L476RGTX INTERFACE
+  "STM32L4xx"
+	"ARDUINO_GENERIC_L476RGTX"
+	"BOARD_NAME=\"GENERIC_L476RGTX\""
+	"BOARD_ID=GENERIC_L476RGTX"
+	"VARIANT_H=\"variant_generic.h\""
+)
+target_include_directories(GENERIC_L476RGTX INTERFACE
+  ${CMAKE_CURRENT_LIST_DIR}/../system/STM32L4xx
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/STM32L4xx_HAL_Driver/Inc
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/STM32L4xx_HAL_Driver/Src
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32L4xx/Include/
+  ${CMAKE_CURRENT_LIST_DIR}/../system/Drivers/CMSIS/Device/ST/STM32L4xx/Source/Templates/gcc/
+  ${GENERIC_L476RGTX_VARIANT_PATH}
+)
+
+target_link_options(GENERIC_L476RGTX INTERFACE
+  "LINKER:--default-script=${GENERIC_L476RGTX_VARIANT_PATH}/ldscript.ld"
+  "LINKER:--defsym=LD_FLASH_OFFSET=0x0"
+	"LINKER:--defsym=LD_MAX_SIZE=1048576"
+	"LINKER:--defsym=LD_MAX_DATA_SIZE=98304"
+  "SHELL:-mfpu=fpv4-sp-d16 -mfloat-abi=hard"
+  -mcpu=${GENERIC_L476RGTX_MCU}
+)
+
+add_library(GENERIC_L476RGTX_serial_disabled INTERFACE)
+target_compile_options(GENERIC_L476RGTX_serial_disabled INTERFACE
+  "SHELL:"
+)
+add_library(GENERIC_L476RGTX_serial_generic INTERFACE)
+target_compile_options(GENERIC_L476RGTX_serial_generic INTERFACE
+  "SHELL:-DHAL_UART_MODULE_ENABLED"
+)
+add_library(GENERIC_L476RGTX_serial_none INTERFACE)
+target_compile_options(GENERIC_L476RGTX_serial_none INTERFACE
+  "SHELL:-DHAL_UART_MODULE_ENABLED -DHWSERIAL_NONE"
+)
+add_library(GENERIC_L476RGTX_usb_CDC INTERFACE)
+target_compile_options(GENERIC_L476RGTX_usb_CDC INTERFACE
+  "SHELL:-DUSBCON  -DUSBD_VID=0x0483 -DUSBD_PID=0x5740 -DHAL_PCD_MODULE_ENABLED -DUSBD_USE_CDC -DDISABLE_GENERIC_SERIALUSB"
+)
+add_library(GENERIC_L476RGTX_usb_CDCgen INTERFACE)
+target_compile_options(GENERIC_L476RGTX_usb_CDCgen INTERFACE
+  "SHELL:-DUSBCON  -DUSBD_VID=0x0483 -DUSBD_PID=0x5740 -DHAL_PCD_MODULE_ENABLED -DUSBD_USE_CDC"
+)
+add_library(GENERIC_L476RGTX_usb_HID INTERFACE)
+target_compile_options(GENERIC_L476RGTX_usb_HID INTERFACE
+  "SHELL:-DUSBCON  -DUSBD_VID=0x0483 -DUSBD_PID=0x5740 -DHAL_PCD_MODULE_ENABLED -DUSBD_USE_HID_COMPOSITE"
+)
+add_library(GENERIC_L476RGTX_usb_none INTERFACE)
+target_compile_options(GENERIC_L476RGTX_usb_none INTERFACE
+  "SHELL:"
+)
+add_library(GENERIC_L476RGTX_xusb_FS INTERFACE)
+target_compile_options(GENERIC_L476RGTX_xusb_FS INTERFACE
+  "SHELL:"
+)
+add_library(GENERIC_L476RGTX_xusb_HS INTERFACE)
+target_compile_options(GENERIC_L476RGTX_xusb_HS INTERFACE
+  "SHELL:-DUSE_USB_HS"
+)
+add_library(GENERIC_L476RGTX_xusb_HSFS INTERFACE)
+target_compile_options(GENERIC_L476RGTX_xusb_HSFS INTERFACE
+  "SHELL:-DUSE_USB_HS -DUSE_USB_HS_IN_FS"
+)
+
+
+

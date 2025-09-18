@@ -1,0 +1,14 @@
+# This file help to add generic board entry.
+# upload.maximum_size and product_line have to be verified
+# and changed if needed.
+# See: https://github.com/stm32duino/Arduino_Core_STM32/wiki/Add-a-new-variant-%28board%29
+
+
+# Generic L476RGTx
+ESAT.menu.pnum.GENERIC_L476RGTX=L476RGTx
+ESAT.menu.pnum.GENERIC_L476RGTX.upload.maximum_size=1048576
+ESAT.menu.pnum.GENERIC_L476RGTX.upload.maximum_data_size=131072
+ESAT.menu.pnum.GENERIC_L476RGTX.build.board=GENERIC_L476RGTX
+ESAT.menu.pnum.GENERIC_L476RGTX.build.product_line=STM32L476xx
+ESAT.menu.pnum.GENERIC_L476RGTX.build.variant=STM32L4xx/L475R(C-E-G)T_L476R(C-E-G)T_L486RGT
+ESAT.menu.pnum.GENERIC_L476RGTX.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32L4xx/STM32L476.svd

@@ -1,0 +1,7 @@
+Built over: 
+
+
+commit 8e173d627a1cea8139bfb7ea85f8f0cf8ea8443f
+Author: Frederic Pillon <frederic.pillon@st.com>
+
+    chore: bump release version to 2.10.1
