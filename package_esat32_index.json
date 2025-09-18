@@ -16,8 +16,8 @@
           "category": "Contributed",
           "url": "https://github.com/gatoMSP430/STM32_custom_board/tree/main/esat32.tar.gz",
           "archiveFileName": "esat32.tar.gz",
-          "checksum": "SHA-256:SHA256: 61807ca6e204c7c1bf1a83711c21d820e6707ad51dc15eba5ab7214fb2f9950b",
-          "size": "7017221",
+          "checksum": "SHA-256:c6be1c3032f45a9acf33c3eee1a70dea2d5682c3937cb8d61f2dd1da6796184c",
+          "size": "7020289",
           "boards": [
             {"name": "OBC STM32"}
           ],
