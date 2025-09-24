@@ -4,7 +4,7 @@
       "name": "esatSTM32",
       "websiteURL": "https://github.com/gatoMSP430/STM32_custom_board/tree/main",
       "maintainer": "Me",
-      "email": "",
+      "email": "Me",
       "help": {
         "online": "http://www.stm32duino.com/"
       },
@@ -22,7 +22,7 @@
             {"name": "OBC"},{"name":"ADCS"}
           ],
           "toolsDependencies": []
-        },        
+        }        
         
       ],
       "tools": []
