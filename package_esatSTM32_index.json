@@ -14,8 +14,8 @@
           "architecture": "stm32",
           "version": "1.0.0",
           "category": "Contributed",
-          "url": "https://github.com/gatoMSP430/STM32_custom_board/blob/main/esat32.tar.bz2",
-          "archiveFileName": "esat32.tar.bz2",
+          "url": "https://github.com/gatoMSP430/STM32_custom_board/blob/main/esat32-1.0.0.tar.bz2",
+          "archiveFileName": "esat32-1.0.0.tar.bz2",
           "checksum": "SHA-256:f2e8524d887dbf8fd72286d9ae1e3085c5b625e5eb6852163cadc4e096fbf389",
           "size": "5375690",
           "boards": [
