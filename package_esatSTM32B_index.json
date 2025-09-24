@@ -19,7 +19,7 @@
           "checksum": "SHA-256:f2e8524d887dbf8fd72286d9ae1e3085c5b625e5eb6852163cadc4e096fbf389",
           "size": "5375690",
           "boards": [
-            {"name": "OBC STM32"}
+            {"name": "OBC"},{"name":"ADCS"}
           ],
           "toolsDependencies": []
         },        
