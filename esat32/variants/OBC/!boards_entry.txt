@@ -5,10 +5,10 @@
 
 
 # Generic L476RGTx
-ESAT.menu.pnum.GENERIC_L476RGTX=L476RGTx
-ESAT.menu.pnum.GENERIC_L476RGTX.upload.maximum_size=1048576
-ESAT.menu.pnum.GENERIC_L476RGTX.upload.maximum_data_size=131072
-ESAT.menu.pnum.GENERIC_L476RGTX.build.board=GENERIC_L476RGTX
-ESAT.menu.pnum.GENERIC_L476RGTX.build.product_line=STM32L476xx
-ESAT.menu.pnum.GENERIC_L476RGTX.build.variant=STM32L4xx/L475R(C-E-G)T_L476R(C-E-G)T_L486RGT
-ESAT.menu.pnum.GENERIC_L476RGTX.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32L4xx/STM32L476.svd
+GenL4.menu.pnum.GENERIC_L476RGTX=L476RGTx
+GenL4.menu.pnum.GENERIC_L476RGTX.upload.maximum_size=1048576
+GenL4.menu.pnum.GENERIC_L476RGTX.upload.maximum_data_size=131072
+GenL4.menu.pnum.GENERIC_L476RGTX.build.board=GENERIC_L476RGTX
+GenL4.menu.pnum.GENERIC_L476RGTX.build.product_line=STM32L476xx
+GenL4.menu.pnum.GENERIC_L476RGTX.build.variant=STM32L4xx/L475R(C-E-G)T_L476R(C-E-G)T_L486RGT
+GenL4.menu.pnum.GENERIC_L476RGTX.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32L4xx/STM32L476.svd

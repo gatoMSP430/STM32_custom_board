@@ -149,5 +149,4 @@ class TwoWire : public Stream {
 
 
 extern TwoWire Wire;
-
 #endif
