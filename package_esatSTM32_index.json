@@ -1,7 +1,7 @@
 {
   "packages": [
     {
-      "name": "esat32",
+      "name": "esatSTM32",
       "websiteURL": "https://github.com/gatoMSP430/STM32_custom_board/tree/main",
       "maintainer": "Me",
       "email": "",
@@ -10,7 +10,7 @@
       },
       "platforms": [
         {
-          "name": "esat32",
+          "name": "esatSTM32",
           "architecture": "stm32",
           "version": "1.0.0",
           "category": "Contributed",
