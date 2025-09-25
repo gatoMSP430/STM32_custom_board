@@ -23,6 +23,11 @@
                     ],
                     "toolsDependencies": [
                         {
+							"packager": "ESAT",
+							"name": "esat-dfu-util",
+							"version": "0.9"
+						},
+						{
                             "packager": "STMicroelectronics",
                             "name": "xpack-arm-none-eabi-gcc",
                             "version": "14.2.1-1.1"
@@ -51,6 +56,33 @@
                 }
             ],
             "tools": [
+				{
+				  "name": "esat-dfu-util",
+				  "version": "0.9",
+				  "systems": [
+					{
+					  "host": "i686-mingw32",
+					  "url": "http://www.theia.eusoc.upm.es/esat-downloads/esat-dfu-util-0.9-win32.zip",
+					  "archiveFileName": "esat-dfu-util-0.9-win32.zip",
+					  "checksum": "SHA-256:9b71e956a63b1144592422320d533d3a4d4b79f145869254236cf6b01a3f49a1",
+					  "size": "277538"
+					},
+					{
+					  "host": "x86_64-pc-linux-gnu",
+					  "url": "http://www.theia.eusoc.upm.es/esat-downloads/esat-dfu-util-0.9-linux64.tar.gz",
+					  "archiveFileName": "esat-dfu-util-0.9-linux64.tar.gz",
+					  "checksum": "SHA-256:ba1e18ad3cd2af59466b6052947d84093cd14e0e111d426e67f79a24b982203e",
+					  "size": "100512"
+					},
+					{
+					  "host": "x86_64-apple-darwin",
+					  "url": "http://www.theia.eusoc.upm.es/esat-downloads/esat-dfu-util-0.9-darwin.tar.gz",
+					  "archiveFileName": "esat-dfu-util-0.9-darwin.tar.gz",
+					  "checksum": "SHA-256:7e7a341f4bf8d0e10c52dd89af72eadf7f5ad88dab6703b925e4c45fc56936f8",
+					  "size": "86199"
+					}
+				  ]
+				},
                 {
                     "name": "xpack-arm-none-eabi-gcc",
                     "version": "14.2.1-1.1",
