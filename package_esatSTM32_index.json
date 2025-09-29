@@ -23,32 +23,32 @@
                     ],
                     "toolsDependencies": [
                         {
-							"packager": "ESAT",
+							"packager": "esatSTM32",
 							"name": "esat-dfu-util",
 							"version": "0.9"
 						},
 						{
-                            "packager": "STMicroelectronics",
+                            "packager": "esatSTM32",
                             "name": "xpack-arm-none-eabi-gcc",
                             "version": "14.2.1-1.1"
                         },
                         {
-                            "packager": "STMicroelectronics",
+                            "packager": "esatSTM32",
                             "name": "xpack-openocd",
                             "version": "0.12.0-6"
                         },
                         {
-                            "packager": "STMicroelectronics",
+                            "packager": "esatSTM32",
                             "name": "STM32Tools",
                             "version": "2.3.0"
                         },
                         {
-                            "packager": "STMicroelectronics",
+                            "packager": "esatSTM32",
                             "name": "CMSIS",
                             "version": "5.9.0"
                         },
                         {
-                            "packager": "STMicroelectronics",
+                            "packager": "esatSTM32",
                             "name": "STM32_SVD",
                             "version": "1.18.0"
                         }
