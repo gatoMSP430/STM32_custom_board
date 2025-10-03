@@ -3,25 +3,30 @@
 menu.pnum=Board
 
 #menu.xserial=U(S)ART support
-#menu.usb=USB support (if available)
-menu.xusb=USB speed (if available)
+menu.usb=USB support (if available)
+#menu.xusb=USB speed (if available)
 menu.virtio=Virtual serial support
 
 menu.opt=Optimize
-menu.dbg=Debug symbols and core logs
-menu.rtlib=C Runtime Library
+#menu.dbg=Debug symbols and core logs
+#menu.rtlib=C Runtime Library
 menu.upload_method=Upload method
+
 
 ################################################################################
 # OBC
 OBC.name=OBC
-
 OBC.build.core=arduino
-OBC.build.board=GenL4
+#OBC.build.board=GenL4
+#OBC.build.product_line=OBC
 OBC.build.product_line=STM32L476xx
-OBC.build.xserial=-DHAL_UART_MODULE_ENABLED -DENABLE_HWSERIAL3 -DPIN_SERIAL3_RX=PC5 -DPIN_SERIAL3_TX=PC4
-OBC.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC
-
+OBC.build.usb_product="OBC"
+OBC.build.usb_manufacturer="THEIA"
+#OBC.build.xserial=-DHAL_UART_MODULE_ENABLED -DENABLE_HWSERIAL3 -DPIN_SERIAL3_RX=PC5 -DPIN_SERIAL3_TX=PC4
+#OBC.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC
+OBC.build.vid=0x1d50
+OBC.build.pid=0x6134
+OBC.build.did=0xffff
 OBC.build.st_extra_flags=-D{build.product_line} {build.enable_usb} {build.xSerial}
 OBC.build.mcu=cortex-m4
 OBC.build.fpu=-mfpu=fpv4-sp-d16
@@ -30,14 +35,17 @@ OBC.build.series=STM32L4xx
 OBC.build.flash_offset=0x0
 OBC.build.board=GENERIC_L476RGTX
 OBC.build.variant=OBC
+#OBC.build.variant.name=OBC
 #STM32L4xx/L476RGTx
 
 OBC.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32L4xx/STM32L476.svd
 
 OBC.upload.maximum_size=1048576
 OBC.upload.maximum_data_size=98304
+OBC.upload.use_1200bps_touch=true
+#OBC.upload.wait_for_upload_port=true
 OBC.openocd.target=stm32l4x
-OBC.build.extra_flags+='-DUSB_MANUFACTURER_STRING="THEIA"' '-DUSB_PRODUCT_STRING="OBC"'
+#OBC.build.extra_flags+=-DUSB_MANUFACTURER_STRING="THEIA" -DUSB_PRODUCT_STRING=OBC
 
 #OBC.menu.xserial.generic=Enabled (generic 'Serial')
 #OBC.menu.xserial.none=Enabled (no generic 'Serial')
@@ -46,10 +54,12 @@ OBC.build.extra_flags+='-DUSB_MANUFACTURER_STRING="THEIA"' '-DUSB_PRODUCT_STRING
 #OBC.menu.xserial.disabled.build.xSerial=
 
 #OBC.menu.usb.none=None
-#OBC.menu.usb.CDCgen=CDC (generic 'Serial' supersede U(S)ART)
-#OBC.menu.usb.CDCgen.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC
-#OBC.menu.usb.CDC=CDC (no generic 'Serial')
-#OBC.menu.usb.CDC.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC -DDISABLE_GENERIC_SERIALUSB
+OBC.menu.usb.CDCgen=CDC (generic 'Serial' supersede U(S)ART)
+OBC.build.boardName="OBC"
+OBC.menu.usb.CDCgen.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC
+OBC.menu.usb.noCDC=None (Debug)
+OBC.menu.usb.CDC.build.enable_usb=
+#{build.usb_flags} -DUSBD_USE_CDC -DDISABLE_GENERIC_SERIALUSB
 #OBC.menu.usb.HID=HID (keyboard and mouse)
 #OBC.menu.usb.HID.build.enable_usb={build.usb_flags} -DUSBD_USE_HID_COMPOSITE
 #OBC.menu.xusb.FS=Low/Full Speed
@@ -59,26 +69,32 @@ OBC.build.extra_flags+='-DUSB_MANUFACTURER_STRING="THEIA"' '-DUSB_PRODUCT_STRING
 #OBC.menu.xusb.HSFS.build.usb_speed=-DUSE_USB_HS -DUSE_USB_HS_IN_FS
 
 OBC.menu.opt.osstd=Smallest (-Os default)
-OBC.menu.opt.oslto=Smallest (-Os) with LTO
-OBC.menu.opt.oslto.build.flags.optimize=-Os -flto
-OBC.menu.opt.o1std=Fast (-O1)
-OBC.menu.opt.o1std.build.flags.optimize=-O1
-OBC.menu.opt.o1lto=Fast (-O1) with LTO
-OBC.menu.opt.o1lto.build.flags.optimize=-O1 -flto
-OBC.menu.opt.o2std=Faster (-O2)
-OBC.menu.opt.o2std.build.flags.optimize=-O2
-OBC.menu.opt.o2lto=Faster (-O2) with LTO
-OBC.menu.opt.o2lto.build.flags.optimize=-O2 -flto
-OBC.menu.opt.o3std=Fastest (-O3)
-OBC.menu.opt.o3std.build.flags.optimize=-O3
-OBC.menu.opt.o3lto=Fastest (-O3) with LTO
-OBC.menu.opt.o3lto.build.flags.optimize=-O3 -flto
+#OBC.menu.opt.oslto=Smallest (-Os) with LTO
+#OBC.menu.opt.oslto.build.flags.optimize=-Os -flto
+#OBC.menu.opt.o1std=Fast (-O1)
+#OBC.menu.opt.o1std.build.flags.optimize=-O1
+#OBC.menu.opt.o1lto=Fast (-O1) with LTO
+#OBC.menu.opt.o1lto.build.flags.optimize=-O1 -flto
+#OBC.menu.opt.o2std=Faster (-O2)
+#OBC.menu.opt.o2std.build.flags.optimize=-O2
+#OBC.menu.opt.o2lto=Faster (-O2) with LTO
+#OBC.menu.opt.o2lto.build.flags.optimize=-O2 -flto
+#OBC.menu.opt.o3std=Fastest (-O3)
+#OBC.menu.opt.o3std.build.flags.optimize=-O3
+#OBC.menu.opt.o3lto=Fastest (-O3) with LTO
+#OBC.menu.opt.o3lto.build.flags.optimize=-O3 -flto
 OBC.menu.opt.ogstd=Debug (-Og)
 OBC.menu.opt.ogstd.build.flags.optimize=-Og
-OBC.menu.opt.o0std=No Optimization (-O0)
-OBC.menu.opt.o0std.build.flags.optimize=-O0
+#OBC.menu.opt.o0std=No Optimization (-O0)
+#OBC.menu.opt.o0std.build.flags.optimize=-O0
 
 # Upload menu
+
+OBC.menu.upload_method.stm32l4_dfu=dfu-util (DFU)
+OBC.menu.upload_method.stm32l4_dfu.upload.protocol=dfu
+OBC.menu.upload_method.stm32l4_dfu.upload.options=-v {upload.vid} -p {upload.pid}
+OBC.menu.upload_method.stm32l4_dfu.upload.tool=stm32l4_dfu
+
 OBC.menu.upload_method.dfuMethod=STM32CubeProgrammer (DFU)
 OBC.menu.upload_method.dfuMethod.upload.protocol=dfu
 OBC.menu.upload_method.dfuMethod.upload.options=-v {upload.vid} -p {upload.pid}
@@ -89,42 +105,31 @@ OBC.menu.upload_method.swdMethod.upload.protocol=swd
 OBC.menu.upload_method.swdMethod.upload.options=
 OBC.menu.upload_method.swdMethod.upload.tool=stm32CubeProg
 
-OBC.menu.upload_method.jlinkMethod=STM32CubeProgrammer (J-Link)
-OBC.menu.upload_method.jlinkMethod.upload.protocol=jlink
-OBC.menu.upload_method.jlinkMethod.upload.options=
-OBC.menu.upload_method.jlinkMethod.upload.tool=stm32CubeProg
-
-OBC.menu.upload_method.serialMethod=STM32CubeProgrammer (Serial)
-OBC.menu.upload_method.serialMethod.upload.protocol=serial
-OBC.menu.upload_method.serialMethod.upload.options=-c {serial.port.file}
-OBC.menu.upload_method.serialMethod.upload.tool=stm32CubeProg
-
 OBC.menu.upload_method.OpenOCDSTLink=OpenOCD STLink (SWD)
 OBC.menu.upload_method.OpenOCDSTLink.upload.protocol=stlink
 OBC.menu.upload_method.OpenOCDSTLink.upload.tool=openocd_upload
 
-OBC.menu.upload_method.OpenOCDDapLink=OpenOCD DapLink (SWD)
-OBC.menu.upload_method.OpenOCDDapLink.upload.protocol=cmsis-dap
-OBC.menu.upload_method.OpenOCDDapLink.upload.tool=openocd_upload
+OBC.menu.upload_method.bmp=BMP (Black Magic Probe)
+OBC.menu.upload_method.bmp.upload.protocol=gdb_bmp
+OBC.menu.upload_method.bmp.upload.tool=bmp_upload
 
+#OBC.menu.dbg.none=None
+#OBC.menu.dbg.enable_sym=Symbols Enabled (-g)
+#OBC.menu.dbg.enable_sym.build.flags.debug=-g -DNDEBUG
+#OBC.menu.dbg.enable_log=Core logs Enabled
+#OBC.menu.dbg.enable_log.build.flags.debug=
+#OBC.menu.dbg.enable_all=Core Logs and Symbols Enabled (-g)
+#OBC.menu.dbg.enable_all.build.flags.debug=-g
 
-OBC.menu.dbg.none=None
-OBC.menu.dbg.enable_sym=Symbols Enabled (-g)
-OBC.menu.dbg.enable_sym.build.flags.debug=-g -DNDEBUG
-OBC.menu.dbg.enable_log=Core logs Enabled
-OBC.menu.dbg.enable_log.build.flags.debug=
-OBC.menu.dbg.enable_all=Core Logs and Symbols Enabled (-g)
-OBC.menu.dbg.enable_all.build.flags.debug=-g
-
-OBC.menu.rtlib.nano=Newlib Nano (default)
-OBC.menu.rtlib.nanofp=Newlib Nano + Float Printf
-OBC.menu.rtlib.nanofp.build.flags.ldspecs=--specs=nano.specs -u _printf_float
-OBC.menu.rtlib.nanofs=Newlib Nano + Float Scanf
-OBC.menu.rtlib.nanofs.build.flags.ldspecs=--specs=nano.specs -u _scanf_float
-OBC.menu.rtlib.nanofps=Newlib Nano + Float Printf/Scanf
-OBC.menu.rtlib.nanofps.build.flags.ldspecs=--specs=nano.specs -u _printf_float -u _scanf_float
-OBC.menu.rtlib.full=Newlib Standard
-OBC.menu.rtlib.full.build.flags.ldspecs=
+#OBC.menu.rtlib.nano=Newlib Nano (default)
+#OBC.menu.rtlib.nanofp=Newlib Nano + Float Printf
+#OBC.menu.rtlib.nanofp.build.flags.ldspecs=--specs=nano.specs -u _printf_float
+#OBC.menu.rtlib.nanofs=Newlib Nano + Float Scanf
+#OBC.menu.rtlib.nanofs.build.flags.ldspecs=--specs=nano.specs -u _scanf_float
+#OBC.menu.rtlib.nanofps=Newlib Nano + Float Printf/Scanf
+#OBC.menu.rtlib.nanofps.build.flags.ldspecs=--specs=nano.specs -u _printf_float -u _scanf_float
+#OBC.menu.rtlib.full=Newlib Standard
+#OBC.menu.rtlib.full.build.flags.ldspecs=
 
 
 ################################################################################
@@ -134,8 +139,12 @@ ADCS.name=ADCS
 ADCS.build.core=arduino
 ADCS.build.board=GenL4
 ADCS.build.product_line=STM32L476xx
+ADCS.build.usb_product="ADCS"
 ADCS.build.xserial=-DHAL_UART_MODULE_ENABLED -DENABLE_HWSERIAL3 -DPIN_SERIAL3_RX=PC5 -DPIN_SERIAL3_TX=PC4
 ADCS.build.enable_usb={build.usb_flags} -DUSBD_USE_CDC
+ADCS.build.vid=0x1d50
+ADCS.build.pid=0x6137
+ADCS.build.did=0xffff
 
 ADCS.build.st_extra_flags=-D{build.product_line} {build.enable_usb} {build.xSerial}
 ADCS.build.mcu=cortex-m4
@@ -149,8 +158,9 @@ ADCS.debug.svd_file={runtime.tools.STM32_SVD.path}/svd/STM32L4xx/STM32L476.svd
 
 ADCS.upload.maximum_size=1048576
 ADCS.upload.maximum_data_size=98304
+ADCS.upload.use_1200bps_touch=true
 ADCS.openocd.target=stm32l4x
-ADCS.build.extra_flags+='-DUSB_MANUFACTURER_STRING="THEIA"' '-DUSB_PRODUCT_STRING="OBC"'
+ADCS.build.extra_flags+='-DUSB_MANUFACTURER_STRING="THEIA"' '-DBOARD_NAME="ADCS"'
 
 #ADCS.menu.xserial.generic=Enabled (generic 'Serial')
 #ADCS.menu.xserial.none=Enabled (no generic 'Serial')
@@ -172,24 +182,24 @@ ADCS.build.extra_flags+='-DUSB_MANUFACTURER_STRING="THEIA"' '-DUSB_PRODUCT_STRIN
 #ADCS.menu.xusb.HSFS.build.usb_speed=-DUSE_USB_HS -DUSE_USB_HS_IN_FS
 
 ADCS.menu.opt.osstd=Smallest (-Os default)
-ADCS.menu.opt.oslto=Smallest (-Os) with LTO
-ADCS.menu.opt.oslto.build.flags.optimize=-Os -flto
-ADCS.menu.opt.o1std=Fast (-O1)
-ADCS.menu.opt.o1std.build.flags.optimize=-O1
-ADCS.menu.opt.o1lto=Fast (-O1) with LTO
-ADCS.menu.opt.o1lto.build.flags.optimize=-O1 -flto
-ADCS.menu.opt.o2std=Faster (-O2)
-ADCS.menu.opt.o2std.build.flags.optimize=-O2
-ADCS.menu.opt.o2lto=Faster (-O2) with LTO
-ADCS.menu.opt.o2lto.build.flags.optimize=-O2 -flto
-ADCS.menu.opt.o3std=Fastest (-O3)
-ADCS.menu.opt.o3std.build.flags.optimize=-O3
-ADCS.menu.opt.o3lto=Fastest (-O3) with LTO
-ADCS.menu.opt.o3lto.build.flags.optimize=-O3 -flto
+#ADCS.menu.opt.oslto=Smallest (-Os) with LTO
+#ADCS.menu.opt.oslto.build.flags.optimize=-Os -flto
+#ADCS.menu.opt.o1std=Fast (-O1)
+#ADCS.menu.opt.o1std.build.flags.optimize=-O1
+#ADCS.menu.opt.o1lto=Fast (-O1) with LTO
+#ADCS.menu.opt.o1lto.build.flags.optimize=-O1 -flto
+#ADCS.menu.opt.o2std=Faster (-O2)
+#ADCS.menu.opt.o2std.build.flags.optimize=-O2
+#ADCS.menu.opt.o2lto=Faster (-O2) with LTO
+#ADCS.menu.opt.o2lto.build.flags.optimize=-O2 -flto
+#ADCS.menu.opt.o3std=Fastest (-O3)
+#ADCS.menu.opt.o3std.build.flags.optimize=-O3
+#ADCS.menu.opt.o3lto=Fastest (-O3) with LTO
+#ADCS.menu.opt.o3lto.build.flags.optimize=-O3 -flto
 ADCS.menu.opt.ogstd=Debug (-Og)
 ADCS.menu.opt.ogstd.build.flags.optimize=-Og
-ADCS.menu.opt.o0std=No Optimization (-O0)
-ADCS.menu.opt.o0std.build.flags.optimize=-O0
+#ADCS.menu.opt.o0std=No Optimization (-O0)
+#ADCS.menu.opt.o0std.build.flags.optimize=-O0
 
 # Upload menu
 ADCS.menu.upload_method.dfuMethod=STM32CubeProgrammer (DFU)
@@ -205,7 +215,7 @@ ADCS.menu.upload_method.swdMethod.upload.tool=stm32CubeProg
 ADCS.menu.upload_method.jlinkMethod=STM32CubeProgrammer (J-Link)
 ADCS.menu.upload_method.jlinkMethod.upload.protocol=jlink
 ADCS.menu.upload_method.jlinkMethod.upload.options=
-ADCS.menu.upload_method.jlinkMethod.upload.tool=stm32CubeProg
+ADCS.menu.upload_method.jlinkMethod.upload.tool=stm32l4_dfu
 
 ADCS.menu.upload_method.serialMethod=STM32CubeProgrammer (Serial)
 ADCS.menu.upload_method.serialMethod.upload.protocol=serial
@@ -221,21 +231,21 @@ ADCS.menu.upload_method.OpenOCDDapLink.upload.protocol=cmsis-dap
 ADCS.menu.upload_method.OpenOCDDapLink.upload.tool=openocd_upload
 
 
-ADCS.menu.dbg.none=None
-ADCS.menu.dbg.enable_sym=Symbols Enabled (-g)
-ADCS.menu.dbg.enable_sym.build.flags.debug=-g -DNDEBUG
-ADCS.menu.dbg.enable_log=Core logs Enabled
-ADCS.menu.dbg.enable_log.build.flags.debug=
-ADCS.menu.dbg.enable_all=Core Logs and Symbols Enabled (-g)
-ADCS.menu.dbg.enable_all.build.flags.debug=-g
+#ADCS.menu.dbg.none=None
+#ADCS.menu.dbg.enable_sym=Symbols Enabled (-g)
+#ADCS.menu.dbg.enable_sym.build.flags.debug=-g -DNDEBUG
+#ADCS.menu.dbg.enable_log=Core logs Enabled
+#ADCS.menu.dbg.enable_log.build.flags.debug=
+#ADCS.menu.dbg.enable_all=Core Logs and Symbols Enabled (-g)
+#ADCS.menu.dbg.enable_all.build.flags.debug=-g
 
-ADCS.menu.rtlib.nano=Newlib Nano (default)
-ADCS.menu.rtlib.nanofp=Newlib Nano + Float Printf
-ADCS.menu.rtlib.nanofp.build.flags.ldspecs=--specs=nano.specs -u _printf_float
-ADCS.menu.rtlib.nanofs=Newlib Nano + Float Scanf
-ADCS.menu.rtlib.nanofs.build.flags.ldspecs=--specs=nano.specs -u _scanf_float
-ADCS.menu.rtlib.nanofps=Newlib Nano + Float Printf/Scanf
-ADCS.menu.rtlib.nanofps.build.flags.ldspecs=--specs=nano.specs -u _printf_float -u _scanf_float
-ADCS.menu.rtlib.full=Newlib Standard
-ADCS.menu.rtlib.full.build.flags.ldspecs=
+#ADCS.menu.rtlib.nano=Newlib Nano (default)
+#ADCS.menu.rtlib.nanofp=Newlib Nano + Float Printf
+#ADCS.menu.rtlib.nanofp.build.flags.ldspecs=--specs=nano.specs -u _printf_float
+#ADCS.menu.rtlib.nanofs=Newlib Nano + Float Scanf
+#ADCS.menu.rtlib.nanofs.build.flags.ldspecs=--specs=nano.specs -u _scanf_float
+#ADCS.menu.rtlib.nanofps=Newlib Nano + Float Printf/Scanf
+#ADCS.menu.rtlib.nanofps.build.flags.ldspecs=--specs=nano.specs -u _printf_float -u _scanf_float
+#ADCS.menu.rtlib.full=Newlib Standard
+#ADCS.menu.rtlib.full.build.flags.ldspecs=
 

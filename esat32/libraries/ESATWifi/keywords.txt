@@ -1,0 +1,72 @@
+# Copyright (C) 2017, 2018, 2019 Theia Space, Universidad Politécnica de Madrid
+#
+# This file is part of Theia Space's ESAT Wifi library.
+#
+# Theia Space's ESAT Wifi library is free software: you can
+# redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation, either
+# version 3 of the License, or (at your option) any later version.
+#
+# Theia Space's ESAT Wifi library is distributed in the hope that it
+# will be useful, but WITHOUT ANY WARRANTY; without even the implied
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Theia Space's ESAT Wifi library.  If not, see
+# <http://www.gnu.org/licenses/>.
+
+
+#######################################
+# Syntax Coloring Map For ESATWifi
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ESAT_WifiClass	KEYWORD1
+ESAT_WifiConfigurationClass	KEYWORD1
+ESAT_WifiConnectTelecommandClass	KEYWORD1
+ESAT_WifiConnectionStateTelemetryClass	KEYWORD1
+ESAT_WifiDisableTelemetryTelecommandClass	KEYWORD1
+ESAT_WifiDisconnectTelecommandClass	KEYWORD1
+ESAT_WifiEnableTelemetryTelecommandClass	KEYWORD1
+ESAT_WifiNetworkInformationTelemetryClass	KEYWORD1
+ESAT_WifiRadioClass	KEYWORD1
+ESAT_WifiReadConfigurationTelecommandClass	KEYWORD1
+ESAT_WifiSetNetworkPassphraseTelecommandClass	KEYWORD1
+ESAT_WifiSetNetworkSSIDTelecommandClass	KEYWORD1
+ESAT_WifiSetServerAddressTelecommandClass	KEYWORD1
+ESAT_WifiSetServerPortTelecommandClass	KEYWORD1
+ESAT_WifiSetTimeTelecommandClass	KEYWORD1
+ESAT_WifiWriteConfigurationTelecommandClass	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+ESAT_Wifi	KEYWORD2
+ESAT_WifiConfiguration	KEYWORD2
+ESAT_WifiConnectionStateTelemetry	KEYWORD2
+ESAT_WifiConnectTelecommand	KEYWORD2
+ESAT_WifiDisableTelemetryTelecommand	KEYWORD2
+ESAT_WifiDisconnectTelecommand	KEYWORD2
+ESAT_WifiEnableTelemetryTelecommand	KEYWORD2
+ESAT_WifiNetworkInformationTelemetry	KEYWORD2
+ESAT_WifiRadio	KEYWORD2
+ESAT_WifiReadConfigurationTelecommand	KEYWORD2
+ESAT_WifiSetNetworkPassphraseTelecommand	KEYWORD2
+ESAT_WifiSetNetworkSSIDTelecommand	KEYWORD2
+ESAT_WifiSetServerAddressTelecommand	KEYWORD2
+ESAT_WifiSetServerPortTelecommand	KEYWORD2
+ESAT_WifiSetTimeTelecommand	KEYWORD2
+ESAT_WifiWriteConfigurationTelecommand	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

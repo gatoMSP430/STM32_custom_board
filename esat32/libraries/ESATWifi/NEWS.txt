@@ -1,0 +1,92 @@
+ESATWifi NEWS -- history of changes.
+
+Copyright (C) 2018, 2019, 2021 Theia Space, Universidad Politécnica de Madrid
+
+This file is part of Theia Space's ESAT utility library.
+
+Theia Space's ESAT Wifi library is free software: you can
+redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, either
+version 3 of the License, or (at your option) any later version.
+
+Theia Space's ESAT Wifi library is distributed in the hope that it
+will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Theia Space's ESAT Wifi library.  If not, see
+<http://www.gnu.org/licenses/>.
+
+
+* Changes in ESATWifi 2.2, 2021-02-11
+
+** There are new on-demand WLAN, network  and transport telemetries.
+
+** Now static IP mode is supported.
+
+** A standalone self-processing telecommands and radio telemetry 
+delivery mode is available for debugging purposes.
+
+** The telemetry enable value is persistent beyond power resets for
+packets with number > 0 (0 always start enabled).
+
+
+* Changes in ESATWifi 2.1.1, 2019-04-30
+
+** This release fixes a crash on telemetry queue resets triggered
+during network operations.
+
+
+* Changes in ESATWifi 2.1.0, 2018-10-24
+
+** This release fixes a packet loss problem when receiving packet
+from the ground station and the on-board computer simultaneously
+is fixed.
+
+** The library doesn't produce compiler warnings anymore.
+
+** Some textual errors have been fixed.
+
+** The README file explains the code organisation.
+
+** All computer code files have copyright notices.
+
+** The main program shows the program name and version in the header.
+
+** The complexity of passing around CCSDS Space Packets in KISS frames
+has been reduced with the help of new modules from ESATUtil.
+
+** The radio connection with the ground segment server is in a
+separate module.
+
+** There are separate modules for telecommands.
+
+** Users can add new telecommands from the Arduino sketch.
+
+** The ESAT Wifi board can produce telemetry packets.
+
+** There is a new telemetry packet that reports the connection state.
+
+** Users can add new telemetry packets from the Arduino sketch.
+
+** The minimum required version of ESATUtil is 2.1.0.
+
+
+* Changes in ESATWifi 2.0.0, 2017-11-08
+
+** Telemetry and telecommand packets are CCSDS Space Packets.
+
+** Packets are passed around in KISS frames.
+
+** Module configuration is commanded with telecommand packets.
+
+** The format for storing the configuration has changed.
+
+** General purpose input/output pin number 0 is used to signal that
+the module is connected or not connected to the ground segment server.
+
+** The code is divided in a library with two modules and a main
+program.
+
+** There is a new dependency: ESATUtil 2.0.0.

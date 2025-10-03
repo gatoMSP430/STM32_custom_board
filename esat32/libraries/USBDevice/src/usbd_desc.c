@@ -83,6 +83,7 @@
 
 /* Product string: Use the specified string if specified, construct
    based on BOARD_NAME and class otherwise. */
+   
 #if defined(USB_PRODUCT_STRING)
   #define USBD_CLASS_PRODUCT_HS_STRING        USB_PRODUCT_STRING
   #define USBD_CLASS_PRODUCT_FS_STRING        USB_PRODUCT_STRING
@@ -110,7 +111,7 @@
   #define USBD_CLASS_CONFIGURATION_FS_STRING  CONCATS(BOARD_NAME, "CDC Config")
   #define USBD_CLASS_INTERFACE_FS_STRING      CONCATS(BOARD_NAME, "CDC Interface")
 #endif /* USBD_USE_CDC */
-
+#define USBD_CLASS_CONFIGURATION_STRING_FS     "My USB Device"
 /* Private macro -------------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Common function */

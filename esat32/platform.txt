@@ -106,16 +106,16 @@ compiler.elf2hex.extra_flags=
 compiler.elf2hex.bin.flags=-O binary
 compiler.suffix.cmd=dfu-suffix
 compiler.suffix.cmd.windows=dfu-suffix.exe
-compiler.dfu-util.path={runtime.tools.STM32Tools.path}
+compiler.dfu-util.path={runtime.tools.esat-dfu-util.path}
 
 # USB Flags
 # ---------
-build.usb_flags=-DUSBCON {build.usb_speed} -DUSBD_VID={build.vid} -DUSBD_PID={build.pid} -DHAL_PCD_MODULE_ENABLED
+build.usb_flags=-DUSBCON {build.usb_speed} -DUSBD_VID={build.vid} -DUSBD_PID={build.pid} -DHAL_PCD_MODULE_ENABLED -DUSBD_MANUFACTURER_STRING="THEIA" -DBOARD_NAME={build.usb_product}
 
 # Specify defaults for vid/pid
 # Boards should specify either both, or neither of these.
-build.vid=0x0483
-build.pid=0x5740
+#build.vid=0x0483
+#build.pid=0x5740
 build.did=0xffff
 
 # To customize the USB manufacturer or product string, must add defines
@@ -184,7 +184,7 @@ build.preferred_out_format=bin
 recipe.objcopy.dfu.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.bin.flags} {compiler.elf2hex.extra_flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.dfu"
 
 ## Append DFU suffix (dfu file)
-recipe.hooks.objcopy.postobjcopy.1.pattern="{compiler.dfu-util.path}/{compiler.suffix.cmd}"  -v "{build.vid}" -p "{build.pid}" -d "{build.did}" -a "{build.path}/{build.project_name}.dfu"
+recipe.hooks.objcopy.postobjcopy.1.pattern="{compiler.dfu-util.path}/{compiler.suffix.cmd}"  -v 0x0483 -p 0xdf11 -d 0xffff -a "{build.path}/{build.project_name}.dfu"
 
 
 ## Save binary
@@ -253,6 +253,25 @@ tools.openocd_upload.upload.params.verbose=-d2
 tools.openocd_upload.upload.params.quiet=-d0
 tools.openocd_upload.upload.pattern="{path}/{cmd}" {upload.verbose} -f interface/{upload.protocol}.cfg -f target/{openocd.target}.cfg -c "program {{build.path}/{build.project_name}.elf} verify reset exit"
 
+
+# DFU
+tools.stm32l4_dfu.path={runtime.tools.esat-dfu-util.path}
+tools.stm32l4_dfu.cmd.path={path}/stm32l4-upload
+tools.stm32l4_dfu.cmd.path.windows={path}/stm32l4-upload.bat
+tools.stm32l4_dfu.upload.params.quiet=
+tools.stm32l4_dfu.upload.params.verbose=-v
+tools.stm32l4_dfu.upload.pattern={cmd.path} 0x0483 0xdf11 "{build.path}/{build.project_name}.dfu"
+
+
+# blackmagic upload for generic STM32
+tools.bmp_upload.cmd=arm-none-eabi-gdb
+tools.bmp_upload.path={toolchain_dir}/bin
+tools.bmp_upload.upload.speed=230400
+tools.bmp_upload.upload.params.verbose=-batch
+tools.bmp_upload.upload.params.quiet=--batch-silent
+tools.bmp_upload.upload.pattern="{path}/{cmd}" -nx -b {upload.speed} {upload.verbose} -ex "set confirm off" -ex "target extended-remote {serial.port}" -ex "monitor swdp_scan" -ex "attach 1" -ex "load" -ex "compare-sections" -ex "kill" "{build.path}/{build.project_name}.elf"
+tools.bmp_upload.upload.pattern.windows="{path}/{cmd}" -nx -b {upload.speed} {upload.verbose} -ex "set confirm off" -ex "target extended-remote \\.\{serial.port}" -ex "monitor swdp_scan" -ex "attach 1" -ex "load" -ex "compare-sections" -ex "kill" "{build.path}/{build.project_name}.elf"
+
 #
 # Debugger
 #
@@ -262,11 +281,15 @@ debug.toolchain.path={toolchain_dir}/bin
 debug.toolchain.prefix=arm-none-eabi
 debug.server=openocd
 debug.server.openocd.path={openocd_dir}/bin/openocd
+#debug.server.openocd.scripts_dir={runtime.tools.esat-dfu-util.path}/ocdscripts/
 debug.server.openocd.scripts_dir={openocd_dir}/openocd/scripts
 # Common config
+debug.server.openocd.scripts.0=stlink.cfg
+debug.server.openocd.scripts.2={openocd.target}.cfg
 debug.server.openocd.scripts.0=interface/stlink.cfg
 debug.server.openocd.scripts.1={runtime.platform.path}/debugger/select_dapdirect.cfg
 debug.server.openocd.scripts.2=target/{openocd.target}.cfg
 #debug.server=bmp
 #debug.server.bmp.servertype=bmp
-#debug.server.bmp.BMPGDBSerialPort=\\.\COM2
+#debug.server.bmp.scripts_dir={runtime.tools.esat-dfu-util.path}/ocdscripts/
+#debug.server.openocd.scripts.0=launch.json
